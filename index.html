@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoAI | Smart Waste Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">♻</div>
+        <div><strong>EcoAI</strong><span>Smart Waste</span></div>
+      </div>
+
+      <nav>
+        <button class="nav-item active" data-page="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-item" data-page="bins"><span>▣</span> Smart Bins</button>
+        <button class="nav-item" data-page="scanner"><span>◉</span> AI Scanner</button>
+        <button class="nav-item" data-page="analytics"><span>▥</span> Analytics</button>
+        <button class="nav-item" data-page="routes"><span>⌁</span> Route Planning</button>
+        <button class="nav-item" data-page="alerts"><span>⚠</span> Alerts <b class="nav-badge">12</b></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="eco-card">
+          <span class="eco-card-icon">🌱</span>
+          <div>
+            <strong>Eco Score</strong>
+            <small>Excellent progress</small>
+          </div>
+          <strong class="score">87%</strong>
+        </div>
+        <button class="settings-btn">⚙ Settings</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div class="top-title">
+          <span id="pageKicker">SMART WASTE MANAGEMENT</span>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="location-badge">📍 Tadepalligudem, Andhra Pradesh</div>
+        <div class="top-actions">
+          <div class="live"><i></i> System Live</div>
+          <button class="icon-btn" id="notificationBtn">🔔<span class="dot"></span></button>
+          <div class="profile">
+            <div class="avatar">EA</div>
+            <div><strong>Eco Admin</strong><small>Administrator</small></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <!-- DASHBOARD -->
+        <section class="page active" id="dashboard">
+          <div class="hero">
+            <div>
+              <span class="eyebrow">AI-POWERED WASTE INTELLIGENCE</span>
+              <h2>Cleaner cities.<br><em>Smarter collection.</em></h2>
+              <p>Smart waste monitoring and AI-powered collection for <strong>Tadepalligudem, Andhra Pradesh</strong>.</p>
+              <div class="hero-buttons">
+                <button class="primary-btn" data-go="scanner">◉ Scan Waste</button>
+                <button class="secondary-btn" data-go="bins">View Smart Bins →</button>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="orb"></div>
+              <div class="floating-card fc1"><span>♻</span><div><b>78%</b><small>Recycled</small></div></div>
+              <div class="floating-card fc2"><span>🚛</span><div><b>24%</b><small>Trips saved</small></div></div>
+              <div class="city-grid"></div>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon green">▣</div><div><small>Total Smart Bins</small><h3>248</h3><span class="up">↑ 8.4%</span> <small>this month</small></div></div>
+            <div class="stat-card"><div class="stat-icon yellow">⚠</div><div><small>Overflow Risks</small><h3 id="riskCount">12</h3><span class="down">↓ 15.2%</span> <small>vs last week</small></div></div>
+            <div class="stat-card"><div class="stat-icon blue">🚛</div><div><small>Active Routes</small><h3>32</h3><span class="up">↑ 6.1%</span> <small>efficiency</small></div></div>
+            <div class="stat-card"><div class="stat-icon purple">♻</div><div><small>Recycling Rate</small><h3>78.4%</h3><span class="up">↑ 12.8%</span> <small>this month</small></div></div>
+          </div>
+
+          <div class="two-col">
+            <div class="panel">
+              <div class="panel-head"><div><h3>Waste Collection Trend</h3><p>Collected waste over the last 7 days</p></div><select id="trendRange"><option>Last 7 days</option><option>Last 30 days</option></select></div>
+              <div class="chart-wrap"><canvas id="wasteChart"></canvas></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><div><h3>Waste Categories</h3><p>Today's composition</p></div><button class="more-btn">•••</button></div>
+              <div class="donut-wrap">
+                <div class="donut"><div><strong>1.84T</strong><span>Total</span></div></div>
+                <div class="legend">
+                  <div><i class="l-green"></i>Organic <b>42%</b></div>
+                  <div><i class="l-blue"></i>Plastic <b>24%</b></div>
+                  <div><i class="l-yellow"></i>Paper <b>18%</b></div>
+                  <div><i class="l-purple"></i>Metal & Glass <b>10%</b></div>
+                  <div><i class="l-gray"></i>Other <b>6%</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="two-col bottom-row">
+            <div class="panel">
+              <div class="panel-head"><div><h3>Critical Smart Bins</h3><p>Bins requiring attention</p></div><button class="text-btn" data-go="bins">View all →</button></div>
+              <div id="criticalBins"></div>
+            </div>
+            <div class="panel ai-insight">
+              <div class="ai-head"><span>✦</span><div><h3>AI Insight</h3><small>Updated 2 minutes ago</small></div></div>
+              <p>Based on current collection patterns, <strong>14 bins</strong> in the <strong>Market Yard & KN Road Commercial Corridors</strong> are predicted to reach 90% capacity within the next <strong>3 hours</strong>.</p>
+              <button class="primary-btn small" data-go="routes">Optimize Route →</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- BINS -->
+        <section class="page" id="bins">
+          <div class="page-intro"><div><span class="eyebrow">LIVE IOT MONITORING</span><h2>Smart Bin Network</h2><p>Real-time fill levels and collection status across Tadepalligudem areas.</p></div><button class="primary-btn" id="refreshBins">↻ Refresh Data</button></div>
+          <div class="filter-row">
+            <div class="search"><span>⌕</span><input id="binSearch" placeholder="Search bin ID or area (e.g. KN Road, Market Yard, Subbaraopet)..."></div>
+            <select id="zoneFilter">
+              <option value="all">All Areas</option>
+              <option>KN Road & Kothi Bomma</option>
+              <option>Market Yard & AMC Complex</option>
+              <option>Railway Station & RTC Bus Complex</option>
+              <option>Subbaraopet & Gandhi Park</option>
+              <option>NIT Campus & Pedatadepalli</option>
+              <option>Kadakatla & Aerodrome Road</option>
+              <option>Housing Board (APHB) Colony</option>
+            </select>
+            <select id="statusFilter"><option value="all">All Status</option><option value="critical">Critical</option><option value="warning">Warning</option><option value="normal">Normal</option></select>
+          </div>
+          <div class="bin-grid" id="binGrid"></div>
+        </section>
+
+        <!-- SCANNER -->
+        <section class="page" id="scanner">
+          <div class="page-intro"><div><span class="eyebrow">COMPUTER VISION</span><h2>AI Waste Scanner</h2><p>Identify waste categories and get instant disposal recommendations.</p></div></div>
+          <div class="scanner-layout">
+            <div class="panel scanner-box">
+              <div class="drop-zone" id="dropZone">
+                <div class="scan-icon">✦</div>
+                <h3>Upload Waste Image</h3>
+                <p>Drag & drop an image here, or click to browse</p>
+                <input type="file" id="imageInput" accept="image/*" hidden>
+                <button class="secondary-btn" id="uploadBtn">Choose Image</button>
+                <small>JPG, PNG • Max 10MB</small>
+                <img id="preview" alt="Waste preview">
+              </div>
+              <div class="sample-row">
+                <small>Or test with sample:</small>
+                <div class="sample-chips">
+                  <button type="button" class="sample-btn" data-sample="plastic">🥤 Plastic Bottle</button>
+                  <button type="button" class="sample-btn" data-sample="organic">🥬 Vegetable Peel</button>
+                  <button type="button" class="sample-btn" data-sample="paper">📦 Cardboard Box</button>
+                </div>
+              </div>
+              <button class="primary-btn scan-btn" id="scanBtn">✦ Analyze with AI</button>
+            </div>
+            <div class="panel result-box">
+              <div class="panel-head"><div><h3>AI Analysis</h3><p>Classification result</p></div><span class="ai-pill">AI VISION</span></div>
+              <div id="scanResult" class="scan-placeholder"><span>◎</span><p>Your analysis will appear here</p><small>Upload an image and start the AI scan.</small></div>
+            </div>
+          </div>
+          <div class="category-cards">
+            <div><span>🥬</span><b>Organic</b><small>Green Bin</small></div>
+            <div><span>🥤</span><b>Plastic</b><small>Blue Bin</small></div>
+            <div><span>📦</span><b>Paper</b><small>Blue Bin</small></div>
+            <div><span>🥫</span><b>Metal</b><small>Yellow Bin</small></div>
+            <div><span>🍾</span><b>Glass</b><small>Yellow Bin</small></div>
+            <div><span>🔋</span><b>E-Waste</b><small>Special Collection</small></div>
+          </div>
+        </section>
+
+        <!-- ANALYTICS -->
+        <section class="page" id="analytics">
+          <div class="page-intro"><div><span class="eyebrow">DATA INTELLIGENCE</span><h2>Waste Analytics</h2><p>Understand waste generation and collection performance.</p></div><button class="secondary-btn" id="exportBtn">⇩ Export Report</button></div>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon green">♻</div><div><small>Total Collected</small><h3>48.6T</h3><span class="up">↑ 14.3%</span></div></div>
+            <div class="stat-card"><div class="stat-icon blue">⚡</div><div><small>Collection Efficiency</small><h3>91.8%</h3><span class="up">↑ 7.2%</span></div></div>
+            <div class="stat-card"><div class="stat-icon purple">CO₂</div><div><small>CO₂ Saved</small><h3>12.4T</h3><span class="up">↑ 18.5%</span></div></div>
+            <div class="stat-card"><div class="stat-icon yellow">₹</div><div><small>Est. Cost Saved</small><h3>₹1.84L</h3><span class="up">↑ 21.1%</span></div></div>
+          </div>
+          <div class="two-col">
+            <div class="panel"><div class="panel-head"><div><h3>Weekly Waste Generation</h3><p>Tonnes by category</p></div></div><div class="chart-wrap tall"><canvas id="barChart"></canvas></div></div>
+            <div class="panel"><div class="panel-head"><div><h3>AI Prediction</h3><p>Next 7 days forecast</p></div></div><div class="prediction-list">
+              <div><span>Mon</span><b>7.2T</b><i style="width:72%"></i></div><div><span>Tue</span><b>7.8T</b><i style="width:78%"></i></div><div><span>Wed</span><b>8.1T</b><i style="width:81%"></i></div><div><span>Thu</span><b>8.6T</b><i style="width:86%"></i></div><div><span>Fri</span><b>9.2T</b><i style="width:92%"></i></div><div><span>Sat</span><b>8.7T</b><i style="width:87%"></i></div><div><span>Sun</span><b>6.9T</b><i style="width:69%"></i></div>
+            </div></div>
+          </div>
+        </section>
+
+        <!-- ROUTES -->
+        <section class="page" id="routes">
+          <div class="page-intro"><div><span class="eyebrow">AI OPTIMIZATION</span><h2>Smart Route Planning</h2><p>Optimize municipal collection paths across Tadepalligudem's commercial, residential, and transit corridors based on fill priority and live traffic.</p></div><button class="primary-btn" id="optimizeBtn">✦ Optimize Routes</button></div>
+          <div class="route-layout">
+            <div class="panel map-panel">
+              <div class="map-toolbar"><span>LIVE COLLECTION MAP • TADEPALLIGUDEM MUNICIPALITY</span><div><i class="map-dot red"></i> Critical <i class="map-dot yellow"></i> Warning <i class="map-dot green"></i> Normal</div></div>
+              <div class="fake-map" id="fakeMap" data-active="A">
+                <div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><div class="road r4"></div>
+                <div class="route-line" id="routeLine"></div>
+                <div class="map-pin p1" data-pin="1" title="Stop 1: Market Yard & AMC (Click to dispatch van)">1</div>
+                <div class="map-pin p2" data-pin="2" title="Stop 2: KN Road / Kothi Bomma (Click to dispatch van)">2</div>
+                <div class="map-pin p3" data-pin="3" title="Stop 3: RTC Bus Complex (Click to dispatch van)">3</div>
+                <div class="map-pin p4" data-pin="4" title="Stop 4: Subbaraopet (Click to dispatch van)">4</div>
+                <div class="map-pin p5" data-pin="5" title="Stop 5: NIT Campus (Click to dispatch van)">5</div>
+                <div class="truck" id="collectionTruck" title="Active Municipal Van (Click to honk)">
+                  <span class="truck-icon">🚛</span>
+                  <div class="truck-status" id="truckStatus">Market Yard</div>
+                </div>
+                <div class="map-label" id="mapRouteLabel">Optimized: Market Yard & KN Road</div>
+                <div class="map-landmark lm1">Market Yard</div>
+                <div class="map-landmark lm2">KN Road</div>
+                <div class="map-landmark lm3">Station / RTC</div>
+                <div class="map-landmark lm4">Subbaraopet</div>
+                <div class="map-landmark lm5">NIT Campus</div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><div><h3>Today's Routes</h3><p>AI optimized schedules</p></div></div>
+              <div class="route-list" id="routeList">
+                <div class="route active-route" data-route="A" data-label="Optimized: Market Yard & KN Road"><div class="route-no">A</div><div><b>Market Yard → KN Road Corridor</b><small>8 stops • 14.2 km • Commercial & Organic</small></div><strong>92%</strong></div>
+                <div class="route" data-route="B" data-label="Optimized: RTC Complex & Station Hub"><div class="route-no">B</div><div><b>RTC Complex → Railway Station Hub</b><small>12 stops • 18.7 km • Transit & Commercial</small></div><strong>88%</strong></div>
+                <div class="route" data-route="C" data-label="Optimized: Subbaraopet & Gandhi Park"><div class="route-no">C</div><div><b>Subbaraopet → Gandhi Park & APHB Colony</b><small>9 stops • 16.1 km • Residential Core</small></div><strong>84%</strong></div>
+                <div class="route" data-route="D" data-label="Optimized: NIT Campus & Kadakatla"><div class="route-no">D</div><div><b>NIT Campus → Pedatadepalli & Kadakatla</b><small>7 stops • 11.8 km • Institutional & Outer Ward</small></div><strong>79%</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="route-metrics"><div><span>🚛</span><div><small>Distance Saved</small><b>42.8 km</b></div></div><div><span>⏱</span><div><small>Time Saved</small><b>1h 24m</b></div></div><div><span>⛽</span><div><small>Fuel Saved</small><b>18.6 L</b></div></div><div><span>🌱</span><div><small>CO₂ Reduced</small><b>43.2 kg</b></div></div></div>
+        </section>
+
+        <!-- ALERTS -->
+        <section class="page" id="alerts">
+          <div class="page-intro"><div><span class="eyebrow">SYSTEM NOTIFICATIONS</span><h2>Alerts & Notifications</h2><p>Monitor critical events across Tadepalligudem's waste network.</p></div><button class="secondary-btn" id="clearAlerts">✓ Mark All Read</button></div>
+          <div class="alert-tabs" id="alertTabs"><button class="active" data-filter="all">All <b>6</b></button><button data-filter="critical">Critical <b>2</b></button><button data-filter="warning">Warning <b>2</b></button><button data-filter="info">Info <b>2</b></button></div>
+          <div class="alerts-list" id="alertsList">
+            <div class="alert-item critical" data-type="critical"><div class="alert-symbol">⚠</div><div><b>Overflow predicted — Bin #104</b><p>AI predicts this bin will exceed 90% capacity within 35 minutes.</p><small>2 minutes ago • Subbaraopet & Gandhi Park</small></div><button class="alert-act-btn" data-action="routes">Assign Route</button></div>
+            <div class="alert-item critical" data-type="critical"><div class="alert-symbol">⚠</div><div><b>Bin #217 requires immediate collection</b><p>Current fill level: 97%. Commercial vegetable shed bin is full.</p><small>11 minutes ago • Market Yard & AMC Complex</small></div><button class="alert-act-btn" data-action="routes">Assign Route</button></div>
+            <div class="alert-item warning" data-type="warning"><div class="alert-symbol">!</div><div><b>High waste generation detected</b><p>Transit corridor is 24% above weekly packaging waste average.</p><small>26 minutes ago • Railway Station & RTC Bus Complex</small></div><button class="alert-act-btn" data-action="analytics">View Analytics</button></div>
+            <div class="alert-item warning" data-type="warning"><div class="alert-symbol">!</div><div><b>Collection vehicle delayed — Route C</b><p>Vehicle delayed by ~14 minutes near Kothi Bomma junction due to market rush.</p><small>42 minutes ago • KN Road & Kothi Bomma</small></div><button class="alert-act-btn" data-action="routes">View Route</button></div>
+            <div class="alert-item info" data-type="info"><div class="alert-symbol">i</div><div><b>Automated route optimization completed</b><p>NIT Campus & Pedatadepalli morning route completed with 100% bin clearance.</p><small>1 hour ago • NIT Campus & Pedatadepalli</small></div><button class="alert-act-btn" data-action="routes">Details</button></div>
+            <div class="alert-item info" data-type="info"><div class="alert-symbol">i</div><div><b>AI classification model updated</b><p>Waste classification model accuracy improved to 96.4%.</p><small>2 hours ago • System Core</small></div><button class="alert-act-btn" data-action="scanner">Try Scanner</button></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
